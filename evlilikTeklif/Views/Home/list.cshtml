@@ -1,0 +1,47 @@
+﻿@*
+   
+*@
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+@model List<questions>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th scope="col">#</th>
+            <th scope="col">Soru Numarası</th>
+            <th scope="col">Soru</th>
+            <th scope="col">Cevaplandı</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <th scope="row">@item.Id</th>
+                <td>@item.number</td>
+                <td>@item.question</td>
+                <td>@item.isAnswered</td>
+            </tr>
+        }
+
+
+    </tbody>
+</table>
+
+<div>
+    <button class="btn btn-primary" onclick="refreshValue()">Sıfırla </button>
+</div>
+<script>
+    function refreshValue() {
+       
+        $.ajax({
+
+            type: "POST",
+            url: "/Home/refreshValue",
+           
+        })
+    }
+
+</script>
